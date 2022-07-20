@@ -7,7 +7,17 @@
   --font-weight-normal: 400;
   --font-weight-bold: 700;
 
-  --color-bg: #eeeeee;
+  --font-size-small: 11pt;
+  --font-size-normal: 12pt;
+  --font-size-medium: 18pt;
+  --font-size-big: 28pt;
+
+  --color-bg: #151515;
+  --color-text: #eeeeee;
+  --color-green: 18, 186, 153;
+  --color-red: 212, 28, 77;
+  --color-blue: 58, 180, 242;
+  --color-button-base: 128, 128, 128, 0.1;
 
   --spacing_half: 5px;
   --spacing: 10px;
@@ -29,9 +39,92 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: var(--spacing_x2) 0;
+  color: var(--color-text);
+  text-align: center;
 }
 
 h1 {
-  font-size: 28pt;
+  font-size: var(--font-size-big);
   text-align: center;
+  margin-bottom: var(--spacing_x2);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  height: 40px;
+  background-color: rgba(var(--color-button-base));
+  border-radius: var(--spacing_half);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  transition: all 350ms ease-in;
+}
+
+button:hover {
+  transition: all 150ms ease-out;
+  animation: horizontal-shake 1s linear infinite;
+}
+
+/* Form */
+.key-size-text {
+  margin: var(--spacing_half) 0;
+  font-size: var(--font-size-medium);
+}
+
+input {
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  padding-left: var(--spacing_half);
+  font-size: var(--font-size-normal);
+  background-color: transparent;
+  border: none;
+  color: var(--color-text);
+}
+
+/* Generated key text */
+#generated-key {
+  text-align: center;
+  margin: var(--spacing_x2) 0;
+  font-size: var(--font-size-medium);
+}
+
+/* Key actions */
+.key-actions {
+  display: flex;
+  column-gap: var(--spacing);
+  justify-content: center;
+  align-items: center;
+}
+
+.key-action-generate:hover {
+  background-color: rgba(var(--color-green), 0.1);
+  color: rgb(var(--color-green));
+}
+
+.key-action-clear:hover {
+  background-color: rgba(var(--color-red), 0.1);
+  color: rgb(var(--color-red));
+}
+
+.key-action-copy:hover {
+  background-color: rgba(var(--color-blue), 0.1);
+  color: rgb(var(--color-blue));
+}
+
+/* Animations */
+@keyframes horizontal-shake {
+  0%,
+  50%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
 }

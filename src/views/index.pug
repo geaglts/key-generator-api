@@ -7,14 +7,14 @@ html
       h1='Key Generator'
     main
       section
-      input(type="text", id="key-title", placeholder="Titulo de la clave")
-      h2 Tamaño de la clave
+      input(type="text", id="key-title", name="title", placeholder="Titulo de la clave")
+      h2(class="key-size-text") Tamaño de la clave
       form(id='key-generator')
-        input(type="text", id="key-size", placeholder="Ingresa el tamaño de la clave")
+        input(type="text", id="key-size", name="key-size", placeholder="Ingresa el tamaño de la clave")
       section 
         p(id="generated-key") clave generada
-      section
-        button(onClick="generateKey()") Generar clave
-        button(onClick="clearKeyInput()") Limpiar clave
-        button(onClick="copyKey()") Copiar clave
+      section(class="key-actions")
+        button(class="key-action-generate", onClick="generateKey()") Generar clave
+        button(class="key-action-clear", onClick="clearKeyInput()") Limpiar clave
+        button(class="key-action-copy", onClick="copyKey()") Copiar clave
     script(src="/public/scripts/main.js")
