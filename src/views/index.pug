@@ -3,4 +3,18 @@ html
     title='Key Generator'
     link(rel="stylesheet", href="/public/styles/main.css")
   body
-    h1='Key Generator'
+    header 
+      h1='Key Generator'
+    main
+      section
+      input(type="text", id="key-title", placeholder="Titulo de la clave")
+      h2 Tamaño de la clave
+      form(id='key-generator')
+        input(type="text", id="key-size", placeholder="Ingresa el tamaño de la clave")
+      section 
+        p(id="generated-key") clave generada
+      section
+        button(onClick="generateKey()") Generar clave
+        button(onClick="clearKeyInput()") Limpiar clave
+        button(onClick="copyKey()") Copiar clave
+    script(src="/public/scripts/main.js")
