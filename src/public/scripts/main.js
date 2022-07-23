@@ -39,7 +39,7 @@ const generateKey = () => {
         itemsToCopy.push($('#key-title').value);
       }
       itemsToCopy.push(data.key);
-      $('#generated-key').textContent = data.key;
+      $('#generated-key').textContent = data.key.slice(0, 20) + '...';
     });
 };
 
