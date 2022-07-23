@@ -62,6 +62,6 @@ const submitForm = (evt) => {
 };
 
 $('#key-generator').addEventListener('keydown', submitForm);
-$('.key-action-generate').onClick = generateKey;
-$('.key-action-clear').onClick = clearKeyInput;
-$('.key-action-copy').onClick = copyKey;
+$('.key-action-generate').addEventListener('click', generateKey);
+$('.key-action-clear').addEventListener('click', clearKeyInput);
+$('.key-action-copy').addEventListener('click', copyKey);
