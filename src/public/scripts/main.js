@@ -6,24 +6,16 @@ const validateKeySize = () => {
   try {
     const sizeValue = $('#key-size')?.value;
     if (sizeValue) {
-      if (isNaN(parseInt(sizeValue))) {
+      if (Number.isNaN(parseInt(sizeValue, 10))) {
         throw new Error('El valor ingresado no es un número');
       }
-      return parseInt(sizeValue);
-    } else {
-      $('#key-size').value = 18;
-      return 18;
+      return parseInt(sizeValue, 10);
     }
+    $('#key-size').value = 18;
+    return 18;
   } catch (error) {
     $('#key-size').value = 18;
     return 18;
-  }
-};
-
-const submitForm = (evt) => {
-  if (evt.keyCode === 13) {
-    evt.preventDefault();
-    generateKey();
   }
 };
 
@@ -39,7 +31,7 @@ const generateKey = () => {
         itemsToCopy.push($('#key-title').value);
       }
       itemsToCopy.push(data.key);
-      $('#generated-key').textContent = data.key.slice(0, 20) + '...';
+      $('#generated-key').textContent = `${data.key.slice(0, 20)}...`;
     });
 };
 
@@ -62,4 +54,14 @@ const copyKey = () => {
   }
 };
 
+const submitForm = (evt) => {
+  if (evt.keyCode === 13) {
+    evt.preventDefault();
+    generateKey();
+  }
+};
+
 $('#key-generator').addEventListener('keydown', submitForm);
+$('.key-action-generate').onClick = generateKey;
+$('.key-action-clear').onClick = clearKeyInput;
+$('.key-action-copy').onClick = copyKey;
