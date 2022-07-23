@@ -16,5 +16,7 @@ html
       section(class="key-actions")
         button(class="key-action-generate", onClick="generateKey()") Generar clave
         button(class="key-action-clear", onClick="clearKeyInput()") Limpiar clave
-        button(class="key-action-copy", onClick="copyKey()") Copiar clave
+        div(class="key-action-copy")
+          button(class="action-copy-btn", onClick="copyKey()") Copiar clave
+          div(id="copy-success" class="inactive") Copiado!
     script(src="/public/scripts/main.js")

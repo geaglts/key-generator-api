@@ -109,9 +109,27 @@ input {
   color: rgb(var(--color-red));
 }
 
-.key-action-copy:hover {
+.key-action-copy {
+  position: relative;
+}
+
+.action-copy-btn:hover {
   background-color: rgba(var(--color-blue), 0.1);
   color: rgb(var(--color-blue));
+}
+
+#copy-success {
+  position: absolute;
+  width: 100%;
+  bottom: -30px;
+}
+
+.active {
+  display: block;
+}
+
+.inactive {
+  display: none;
 }
 
 /* Animations */

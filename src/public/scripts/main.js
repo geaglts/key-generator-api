@@ -53,6 +53,12 @@ const clearKeyInput = () => {
 const copyKey = () => {
   if (itemsToCopy.length > 0) {
     navigator.clipboard.writeText(itemsToCopy.join('\n'));
+    $('#copy-success').classList.remove('inactive');
+    $('#copy-success').classList.add('active');
+    setTimeout(() => {
+      $('#copy-success').classList.remove('active');
+      $('#copy-success').classList.add('inactive');
+    }, 2000);
   }
 };
 
