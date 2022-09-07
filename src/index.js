@@ -1,12 +1,16 @@
 import express from 'express';
 import Debug from 'debug';
 import path from 'path';
+import cors from 'cors';
 import variables from './configs/env';
 import router from './router';
 
 const debug = Debug('app:index');
 
 const app = express();
+
+// middlewares
+app.use(cors());
 
 // public files
 app.use('/public', express.static(path.join(__dirname, 'public')));
