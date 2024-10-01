@@ -18,10 +18,17 @@ class KeyGenerator {
     return Math.floor(Math.random() * end);
   }
 
-  generateKey() {
+  generateKey(exclude = []) {
     this.#key = '';
-    const { lowercase, uppercase, numbers, symbols } = this.#characters;
-    const concat = `${lowercase}${uppercase}${numbers}${symbols}`;
+    let concat = '';
+    // set the values to generate the key
+    Object.keys(this.#characters).forEach((k) => {
+      const value = this.#characters[k];
+      const isExclude = exclude.some((e) => e === k);
+      if (!isExclude) {
+        concat += value;
+      }
+    });
     for (let i = 0; i < this.#size; i += 1) {
       const randomNumber = KeyGenerator.randomNumber(concat.length);
       this.#key += concat[randomNumber];
