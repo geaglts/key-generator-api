@@ -7,7 +7,6 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const file = await fileshareService.getFile(id);
-
     const fileContent = Buffer.from(file.content);
     res.setHeader(
       'Content-Disposition',

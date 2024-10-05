@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import turso from '../libs/turso';
 import KeyGenerator from '../classes/KeyGenerator';
 
@@ -12,11 +13,19 @@ service.getFiles = async () => {
 
 service.getFile = async (id) => {
   const files = await turso.execute({
-    sql: 'SELECT name, content, type, created_date FROM files WHERE hash = ?',
+    sql: 'SELECT id, name, content, type, created_date FROM files WHERE hash = ?',
     args: [id],
   });
-  if (files.rows.length === 0) throw new Error('Not Found');
-  return files.rows[0];
+  const [file] = files.rows;
+  if (!file) throw new Error('Not Found');
+  if (dayjs().diff(file.created_date, 'day') > 0) {
+    await turso.execute({
+      sql: 'DELETE FROM files WHERE id = ?',
+      args: [file.id],
+    });
+    throw new Error('Not found');
+  }
+  return file;
 };
 
 service.addNewFile = async (data) => {
