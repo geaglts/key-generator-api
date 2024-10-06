@@ -22,5 +22,6 @@ formInputKey.addEventListener('submit', async (evt) => {
     link.href = `data:application/octet-stream;base64,${data.base64}`;
     link.download = data.fileName;
     link.click();
+    window.location = '/';
   }
 });
