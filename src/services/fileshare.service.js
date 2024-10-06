@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import turso from '../libs/turso';
 import KeyGenerator from '../classes/KeyGenerator';
+import * as secureService from './secure.service';
 
 const service = {};
 
@@ -13,7 +14,7 @@ service.getFiles = async () => {
 
 service.getFile = async (id) => {
   const files = await turso.execute({
-    sql: 'SELECT id, name, content, type, created_date FROM files WHERE hash = ?',
+    sql: 'SELECT * FROM files WHERE hash = ?',
     args: [id],
   });
   const [file] = files.rows;
@@ -32,9 +33,13 @@ service.addNewFile = async (data) => {
   const keyGenerator = new KeyGenerator(10);
   keyGenerator.generateKey(['symbols']);
   const { name, content, type, passkey } = data;
+  let securePasskey = '';
+  if (passkey) {
+    securePasskey = await secureService.encrypt(passkey);
+  }
   const result = await turso.execute({
     sql: 'INSERT INTO files(hash, name, content, type, passkey) VALUES (?, ?, ?, ?, ?)',
-    args: [keyGenerator.key, name, content, type, passkey],
+    args: [keyGenerator.key, name, content, type, securePasskey],
   });
   const insertedRow = await turso.execute({
     sql: 'SELECT hash FROM files WHERE id = ?',

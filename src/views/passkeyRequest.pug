@@ -1,0 +1,15 @@
+html
+    head
+        title='Fileshare'
+        link(rel="stylesheet", href="/public/styles/main.css")
+        link(rel="stylesheet", href="/public/styles/passkey.css")
+    body
+        header
+            h1 Fileshare
+        main
+            form(class="passkey-form", id="form-key-input")
+                input(type="text", placeholder="Ingresa la clave", name="key")
+                input(type="hidden", name="id" value=id)
+                button(class="action-copy-btn") Descargar archivo
+            p(id="error-message")
+        script(src="/public/scripts/keyRequest.js")

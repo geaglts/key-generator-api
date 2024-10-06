@@ -52,7 +52,7 @@ h1 {
 button {
   cursor: pointer;
   border: none;
-  width: 150px;
+  padding: 0 1em;
   height: 40px;
   background-color: rgba(var(--color-button-base));
   border-radius: var(--spacing_half);
@@ -130,6 +130,13 @@ input {
 
 .inactive {
   display: none;
+}
+
+.passkey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
 }
 
 /* Animations */
