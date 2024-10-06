@@ -27,11 +27,12 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/not-found', (req, res) => {
+  res.render('not-found');
+});
+
 app.get('*', (req, res) => {
-  res.status(404).json({
-    message: 'Not found',
-    path: req.path,
-  });
+  res.redirect('/not-found');
 });
 
 app.listen(variables.port, () => {

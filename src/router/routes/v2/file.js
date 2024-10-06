@@ -41,9 +41,7 @@ router.get('/:id', async (req, res) => {
     }
   } catch (error) {
     // debug(error);
-    res.status(404).json({
-      message: error.message,
-    });
+    res.redirect('/not-found');
   }
 });
 

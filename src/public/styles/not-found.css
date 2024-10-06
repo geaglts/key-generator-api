@@ -1,0 +1,43 @@
+main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+main::before,
+main::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+}
+
+main::before {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 99, 71, 0.5); /* Tomate */
+  top: 20%;
+  left: 15%;
+}
+
+main::after {
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 123, 255, 0.5); /* Azul */
+  bottom: 20%;
+  right: 10%;
+}
+
+h1 {
+  font-size: 18pt;
+}
+
+@media (max-width: 720px) {
+  h1 {
+    padding: 0 1em;
+    text-align: center;
+  }
+}
